@@ -96,3 +96,54 @@ WHERE director = writer;
 SELECT name, year
 FROM public.movies
 WHERE name LIKE 'Star%';
+
+-- Set 3: Questions 21 – 30 (Simple SQL)
+
+-- Find all movies that were not produced in the 'United States'.
+SELECT *
+FROM public.movies
+WHERE country NOT IN('United States');
+
+-- List the name and runtime of movies that are between 90 and 120 minutes long (inclusive).
+SELECT name, runtime
+FROM public.movies
+WHERE runtime BETWEEN 90 AND 120;
+
+-- Retrieve the name and genre of the 10 movies with the lowest score.
+SELECT name, genre
+FROM public.movies
+ORDER BY score ASC LIMIT 10;
+
+-- List all unique genres present in the dataset.
+SELECT DISTINCT(genre)
+FROM public.movies;
+
+-- Find the name and budget of movies where the director is either 'James Cameron', 'Ridley Scott', or 'Christopher Nolan'.
+SELECT name, budget
+FROM movies
+WHERE director IN('James Cameron','Ridley Scott','Christopher Nolan');
+
+-- Count how many movies have a rating of 'R'.
+SELECT COUNT(*)
+FROM movies
+WHERE rating='R';
+
+-- Retrieve the name and gross of movies where the gross is greater than $1,000,000,000 (1 billion).
+SELECT name, gross
+FROM movies
+WHERE gross > 1000000000;
+
+-- Find all movies where the company name contains the word 'Universal' anywhere in its name.
+SELECT *
+FROM movies
+WHERE company LIKE '%Universal%';
+
+-- List the name, year, and score of movies released in the 1990s (from 1990 to 1999).
+SELECT name, year, score
+FROM movies
+WHERE year BETWEEN 1990 AND 1999;
+
+-- Retrieve all columns for the single movie that has the highest number of votes.
+SELECT *
+FROM movies
+ORDER BY votes DESC LIMIT 1;
