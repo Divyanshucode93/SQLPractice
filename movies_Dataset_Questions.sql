@@ -147,3 +147,58 @@ WHERE year BETWEEN 1990 AND 1999;
 SELECT *
 FROM movies
 ORDER BY votes DESC LIMIT 1;
+
+
+-- Set 4: Questions 31 – 40 (Simple SQL)
+
+
+-- Retrieve the name and director of all movies where the director name starts with the letter 'A'.
+SELECT name, director 
+FROM movies
+WHERE director LIKE 'A%';
+
+-- Find the total gross revenue for all movies in the 'Comedy' genre (alias the result as total_comedy_gross).
+SELECT SUM(gross) AS total_comedy_gross
+FROM movies
+WHERE genre = 'Comedy';
+
+-- List the names of all movies that have a runtime of exactly 120 minutes.
+SELECT name
+FROM movies
+WHERE runtime = 120;
+
+-- Find the average budget of movies released in the year 2010.
+SELECT AVG(budget)
+FROM movies
+WHERE year = 2010;
+
+-- Retrieve the name, score, and votes of the top 3 highest-rated movies that have more than 100,000 votes.
+SELECT name, score, votes
+FROM movies
+WHERE votes > 100000
+ORDER BY score DESC LIMIT 3;
+
+-- List all movies where the star is 'Robert De Niro' and the score is greater than 7.0.
+SELECT *
+FROM movies
+WHERE star = 'Robert De Niro' AND score > 7.0;
+
+-- Find the movie with the smallest (minimum) budget that is greater than 0.
+SELECT *
+FROM movies
+WHERE budget > 0
+ORDER BY budget ASC LIMIT 1;
+
+-- Retrieve the names of movies that were produced by either 'Paramount Pictures' or 'Universal Pictures'.
+SELECT name
+FROM movies
+WHERE company IN('Paramount Pictures','Universal Pictures');
+
+-- List the name and year of movies where the gross revenue is less than the budget (indicating a potential loss).
+SELECT name, year
+FROM movies
+WHERE gross < budget;
+
+-- Count how many unique directors are present in the dataset.
+SELECT COUNT(DISTINCT(director))
+FROM movies;
