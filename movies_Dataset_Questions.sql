@@ -202,3 +202,57 @@ WHERE gross < budget;
 -- Count how many unique directors are present in the dataset.
 SELECT COUNT(DISTINCT(director))
 FROM movies;
+
+
+-- Set 5: Questions 41 – 50 (Simple SQL)
+
+
+-- Find all movies where the writer column is NULL.
+SELECT *
+FROM movies
+WHERE writer IS NULL;
+
+-- Retrieve the name and score of all movies where the score is between 7.0 and 8.0 (inclusive).
+SELECT name, score
+FROM movies
+WHERE score BETWEEN 7.0 AND 8.0;
+
+-- List the name and star of movies released in 2015 that have a 'PG-13' rating.
+SELECT name, star
+FROM movies
+WHERE year=2015 AND rating='PG-13';
+
+-- Calculate the total budget spent by the company 'Lucasfilm' across all their movies in this dataset.
+SELECT SUM(budget)
+FROM movies
+WHERE company='Lucasfilm';
+
+-- Find all movies where the movie name is exactly the same as the director (if any exist).
+SELECT *
+FROM movies
+WHERE name=director;
+
+-- List the name and votes of movies that have a score of exactly 9.0.
+SELECT name, votes
+FROM movies
+WHERE score=9.0;
+
+-- Retrieve all movies where the star name contains 'Pitt' (e.g., Brad Pitt).
+SELECT *
+FROM movies
+WHERE star LIKE '%Pitt%';
+
+-- Find the average runtime for movies in the 'Animation' genre.
+SELECT AVG(runtime)
+FROM movies
+WHERE genre = 'Animation';
+
+-- List the name, gross, and budget of movies where the gross is at least triple (3x) the budget.
+SELECT name, gross, budget
+FROM movies
+WHERE gross >= (3*budget);
+
+-- Retrieve the name and runtime of the single movie with the longest duration in the entire dataset.
+SELECT name, runtime
+FROM movies
+ORDER BY runtime DESC LIMIT 1;
