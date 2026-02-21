@@ -256,3 +256,59 @@ WHERE gross >= (3*budget);
 SELECT name, runtime
 FROM movies
 ORDER BY runtime DESC LIMIT 1;
+
+
+-- Set 6: Questions 51 – 60 (Simple SQL)
+
+-- Retrieve the name and budget of all movies with a budget of less than $1,000,000.
+SELECT name, budget 
+FROM movies
+WHERE budget < 1000000;
+
+-- Find all movies that are in the 'Action' genre and have an 'R' rating.
+SELECT *
+FROM movies
+WHERE genre = 'Action' AND rating = 'R';
+
+-- Count how many movies were released in the year 1995.
+SELECT COUNT(*)
+FROM movies
+WHERE year=1995;
+
+-- List the name and score of movies where the score is exactly 5.0, sorted by name alphabetically.
+SELECT name,score
+FROM movies
+WHERE score=5.0
+ORDER BY name ASC;
+
+-- Find the name and runtime of the longest movie released in the year 1980.
+SELECT name, runtime
+FROM movies
+WHERE year=1980
+ORDER BY runtime DESC LIMIT 1;
+
+-- Retrieve the names of all movies that end with the number '2' (e.g., "Toy Story 2").
+SELECT *
+FROM movies
+WHERE name LIKE '%2';
+
+-- Find the total votes for all movies directed by 'Christopher Nolan'.
+SELECT SUM(votes)
+FROM movies
+WHERE director='Christopher Nolan';
+
+-- List the name and released date for movies that were released in the month of 'June' (Hint: the released column is a string like 'June 13, 1980...').
+SELECT name, released
+FROM movies
+WHERE released LIKE 'June%';
+
+-- Find the average score of movies produced by 'Universal Pictures'.
+SELECT AVG(score)
+FROM movies
+WHERE company='Universal Pictures';
+
+-- Retrieve the name, budget, and gross of the top 5 most expensive movies (highest budget) produced by 'Paramount Pictures'.
+SELECT name, budget, gross
+FROM movies
+WHERE company='Paramount Pictures'
+ORDER BY budget DESC LIMIT 5;
