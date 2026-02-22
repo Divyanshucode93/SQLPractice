@@ -312,3 +312,59 @@ SELECT name, budget, gross
 FROM movies
 WHERE company='Paramount Pictures'
 ORDER BY budget DESC LIMIT 5;
+
+
+-- Set 7: Questions 61 – 70 (Simple SQL)
+
+
+-- Find the name and genre of movies where the director is 'Quentin Tarantino' and the runtime is greater than 150 minutes.
+SELECT name, genre
+FROM movies
+WHERE director='Quentin Tarantino' and runtime>150;
+
+-- Retrieve the total number of movies that have a gross revenue greater than their budget.
+SELECT COUNT(*)
+FROM movies
+WHERE gross > budget;
+
+-- List the names of all movies where the company is 'DreamWorks Animation'.
+SELECT name
+FROM movies
+WHERE company = 'DreamWorks Animation';
+
+-- Find the name and score of the movie(s) with the highest score released in the year 2012.
+SELECT name, score
+FROM movies
+WHERE year=2012
+ORDER BY score DESC LIMIT 1;
+
+-- Retrieve the name, writer, and star of movies where the writer and star are the same person.
+SELECT name, writer, star 
+FROM movies
+WHERE writer = star;
+
+-- Count how many movies have a runtime between 60 and 90 minutes (inclusive).
+SELECT COUNT(*)
+FROM movies
+WHERE runtime BETWEEN 60 AND 90;
+
+-- List the name and gross of movies where the gross is between $500,000,000 and $1,000,000,000.
+SELECT name, gross
+FROM movies
+WHERE gross BETWEEN 500000000 AND 1000000000;
+
+-- Find all movies where the director name contains 'Scott' anywhere (e.g., Ridley Scott, Tony Scott).
+SELECT *
+FROM movies
+WHERE director LIKE '%Scott%';
+
+-- Retrieve the name and score of the 5 movies with the most votes in the 'Horror' genre.
+SELECT name, score
+FROM movies
+WHERE genre='Horror'
+ORDER BY votes DESC LIMIT 5;
+
+-- Calculate the total gross revenue of all movies released in the 1980s (from 1980 to 1989).
+SELECT SUM(gross)
+FROM movies
+WHERE year BETWEEN 1980 AND 1989;
