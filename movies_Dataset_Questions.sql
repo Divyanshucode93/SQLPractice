@@ -368,3 +368,57 @@ ORDER BY votes DESC LIMIT 5;
 SELECT SUM(gross)
 FROM movies
 WHERE year BETWEEN 1980 AND 1989;
+
+
+-- Set 8: Questions 71 – 80 (Simple SQL)
+
+-- Find the name and genre of movies where the budget is recorded as 0.
+SELECT name, genre	
+FROM movies
+WHERE budget=0;
+
+-- List all unique country names represented in the dataset, sorted alphabetically.
+SELECT DISTINCT(country)
+FROM movies
+ORDER BY country ASC;
+
+-- Retrieve the name, score, and company of movies that have the word 'International' anywhere in their company name.
+SELECT name, score, company
+FROM movies
+WHERE company LIKE '%International%';
+
+-- Count how many movies in the dataset were directed by 'Tim Burton'.
+SELECT COUNT(*)
+FROM movies
+WHERE director='Tim Burton';
+
+-- Find the average runtime of all movies that have an 'R' rating.
+SELECT AVG(runtime)
+FROM movies
+WHERE rating='R';
+
+-- Retrieve the name and year of the 10 oldest movies in the dataset.
+SELECT name, year
+FROM movies
+ORDER BY year ASC LIMIT 10;
+
+-- List the name, gross, and budget of movies where the gross is more than 10 times the budget (only include movies where the budget is at least $1,000,000).
+SELECT name,gross,budget
+FROM movies
+WHERE (gross > (10 * budget)) AND budget>=1000000;
+
+-- Find the name and runtime of the movie with the shortest duration that is greater than 0.
+SELECT name,runtime
+FROM movies
+WHERE runtime > 0
+ORDER BY runtime ASC LIMIT 1;
+
+-- Retrieve the names of movies that were released in 2010 but were not produced in the 'United States'.
+SELECT name
+FROM movies
+WHERE year=2010 AND country NOT IN('United States');
+
+-- Calculate the total number of votes for all movies released in the year 2000.
+SELECT SUM(votes)
+FROM movies
+WHERE year=2000;
