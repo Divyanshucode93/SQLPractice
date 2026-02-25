@@ -476,3 +476,103 @@ WHERE budget>100000000;
 SELECT *
 FROM movies
 WHERE genre='Biography' AND country='United Kingdom';
+
+
+-- Set 10: Questions 91 – 100 (Simple SQL)
+
+-- Find the name and genre of movies where the name contains the word 'Love' (case-sensitive or insensitive depending on your engine).
+SELECT name, genre
+FROM movies
+WHERE name LIKE '%Love%';
+
+-- Calculate the average gross revenue for movies that have a score of exactly 7.0.
+SELECT AVG(gross)
+FROM movies
+WHERE score=7.0;
+
+-- Retrieve the name and year of all movies where the writer is 'Woody Allen'.
+SELECT name,year
+FROM movies
+WHERE writer='Woody Allen';
+
+-- List the name and released date for all movies released in the month of 'December'.
+SELECT name,released
+FROM movies
+WHERE released LIKE '%December%';
+
+-- Count how many movies have a runtime of more than 180 minutes (3 hours).
+SELECT COUNT(*)
+FROM movies
+WHERE runtime>180;
+
+-- Find the name, budget, and gross of movies where the budget was exactly the same as the gross.
+SELECT name,budget,gross
+FROM movies
+WHERE budget=gross;
+
+-- Retrieve the names of the top 10 movies with the highest votes that are rated 'G'.
+SELECT *
+FROM movies
+WHERE rating='G'
+ORDER By votes DESC LIMIT 10;
+
+-- List the name and star of movies released in 1980 that were produced by 'Columbia Pictures'.
+SELECT name,star
+FROM movies
+WHERE year=1980 AND company='Columbia Pictures';
+
+-- Find the total budget spent on all movies in the 'Action' genre released after 2010.
+SELECT SUM(budget)
+FROM movies
+WHERE genre='Action' AND year>2010;
+
+-- Retrieve all columns for the movie that has the lowest gross revenue (excluding movies with 0 or NULL gross).
+SELECT *
+FROM movies
+WHERE gross IS NOT NULL AND gross<>0
+ORDER BY gross ASC LIMIT 1;
+
+
+-- Set 11: Questions 101 – 110 (Intermediate SQL)
+
+-- For each genre, calculate the total number of movies, the average score, and the total gross revenue.
+SELECT genre,COUNT(name),AVG(score),SUM(gross)
+FROM movies
+GROUP BY genre;
+
+-- List all companies that have produced more than 50 movies in this dataset.
+SELECT company, COUNT(company)
+FROM movies
+GROUP BY company
+HAVING COUNT(company)>50;
+
+-- Find the average budget of movies for each year, and sort the results by year in descending order.
+SELECT year,AVG(budget)
+FROM movies
+GROUP BY year
+ORDER BY year DESC;
+
+-- Retrieve the name and score of all movies that have a score higher than the overall average score of all movies in the entire dataset.
+SELECT score, AVG(score)
+FROM movies
+GROUP BY score
+HAVING score>AVG(score);
+
+-- For each rating (G, PG, R, etc.), find the maximum and minimum runtime recorded.
+SELECT rating,MAX(runtime),MIN(runtime)
+FROM movies
+GROUP BY rating;
+
+-- List the names of the top 10 directors who have generated the highest total gross revenue across all their movies.
+SELECT director,SUM(gross)
+FROM movies
+GROUP By director
+ORDER BY SUM(gross) DESC LIMIT 10
+
+-- Find the top 5 stars who have appeared in the highest number of movies in this dataset.
+
+-- Calculate the average score of movies for each director, but only include directors who have directed at least 10 movies.
+
+-- Find the year that had the highest total gross revenue across all movies released that year.
+
+-- For each genre, find the total number of movies that were produced in the 'United States' versus those produced in other countries (Hint: You can use CASE or two separate counts).
