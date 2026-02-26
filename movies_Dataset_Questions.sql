@@ -553,10 +553,9 @@ GROUP BY year
 ORDER BY year DESC;
 
 -- Retrieve the name and score of all movies that have a score higher than the overall average score of all movies in the entire dataset.
-SELECT score, AVG(score)
+SELECT name, score
 FROM movies
-GROUP BY score
-HAVING score>AVG(score);
+WHERE score > (SELECT AVG(score) FROM movies);
 
 -- For each rating (G, PG, R, etc.), find the maximum and minimum runtime recorded.
 SELECT rating,MAX(runtime),MIN(runtime)
@@ -564,15 +563,32 @@ FROM movies
 GROUP BY rating;
 
 -- List the names of the top 10 directors who have generated the highest total gross revenue across all their movies.
-SELECT director,SUM(gross)
+SELECT director, SUM(gross)
 FROM movies
-GROUP By director
-ORDER BY SUM(gross) DESC LIMIT 10
+GROUP BY director
+ORDER BY SUM(gross) DESC LIMIT 10;
 
 -- Find the top 5 stars who have appeared in the highest number of movies in this dataset.
+SELECT star,COUNT(name)
+FROM movies
+GROUP BY star
+ORDER BY COUNT(star) DESC LIMIT 5;
 
 -- Calculate the average score of movies for each director, but only include directors who have directed at least 10 movies.
+SELECT director,AVG(score)
+FROM movies
+GROUP BY director
+HAVING COUNT(name)>=10;
 
 -- Find the year that had the highest total gross revenue across all movies released that year.
+SELECT year
+FROM movies
+GROUP BY year
+ORDER BY SUM(gross) DESC LIMIT 1;
 
 -- For each genre, find the total number of movies that were produced in the 'United States' versus those produced in other countries (Hint: You can use CASE or two separate counts).
+SELECT genre, 
+	COUNT(CASE WHEN country = 'United States' THEN 1 END) AS us_movies,
+	COUNT(CASE WHEN country <>'United States' THEN 1 END) AS non_us_movies
+FROM movies
+GROUP BY genre;
