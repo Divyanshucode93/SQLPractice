@@ -592,3 +592,39 @@ SELECT genre,
 	COUNT(CASE WHEN country <>'United States' THEN 1 END) AS non_us_movies
 FROM movies
 GROUP BY genre;
+
+
+-- Set 12: Questions 111 – 120 (Intermediate SQL)
+
+
+-- Find all movies that have a runtime longer than the average runtime of all movies in the 'Action' genre.
+SELECT * 
+FROM movies
+WHERE runtime > (SELECT AVG(runtime) AS action_genre_avg FROM movies
+				 WHERE genre='Action');
+
+-- List each director and the number of distinct genres they have worked in.
+SELECT director, DISTINCT(genre)
+FROM movies
+GROUP BY director;
+-- HAVING director = DISTINCT(genres);
+
+-- Retrieve the name and gross of the movie with the highest gross in each year.
+SELECT year, MAX(gross), name
+FROM movies
+GROUP BY year
+ORDER BY MAX(gross) DESC;
+
+-- Calculate the total budget and total gross for each company, but only show companies where the total gross is greater than the total budget.
+
+-- Find the names of movies that were released in the same year as the movie 'The Shining'.
+
+-- List the genre and the average score for that genre, but only for genres that have an average score greater than 7.0.
+
+-- Retrieve the name and director of movies where the director has directed exactly 1 movie in this dataset.
+
+-- For each year, find the difference between the maximum score and the minimum score (alias the result as score_range).
+
+-- Find the name and company of movies whose gross revenue is higher than the average gross of all movies produced by 'Warner Bros.'.
+
+-- Count how many movies each star has appeared in for each genre (Group by both star and genre).
